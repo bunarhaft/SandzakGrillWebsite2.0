@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sandzak Grill – Authentischer Balkan-Grill in Dortmund</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #080808;
+      --dark:    #101010;
+      --card:    #161616;
+      --card2:   #1c1c1c;
+      --gold:    #c9944a;
+      --gold-lt: #e2b472;
+      --cream:   #f0e8dc;
+      --white:   #ffffff;
+      --muted:   #7a7a7a;
+      --border:  rgba(201,148,74,0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAVBAR ─────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      padding: 0.7rem 3.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      transition: box-shadow 0.4s;
+    }
+    nav.scrolled {
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    }
+    .nav-logo img { height: 56px; }
+    .nav-links { display: flex; gap: 2.8rem; list-style: none; }
+    .nav-links a {
+      color: #333333; text-decoration: none;
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px; background: var(--gold);
+      transition: width 0.35s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--gold); color: #ffffff;
+      padding: 0.6rem 1.5rem; border-radius: 3px;
+      font-weight: 600; font-size: 0.78rem;
+      letter-spacing: 0.06em; text-decoration: none;
+      transition: all 0.3s; border: 2px solid var(--gold);
+    }
+    .nav-cta:hover { background: transparent; color: var(--gold); }
+
+    /* ─── HERO ──────────────────────────────────── */
+    .hero {
+      height: 100vh; min-height: 680px;
+      padding-top: 76px;
+      position: relative; overflow: hidden;
+      display: flex; align-items: center;
+    }
+    /* Background layers */
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 70% at 15% 85%, rgba(201,148,74,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 85% 10%, rgba(201,148,74,0.04) 0%, transparent 60%),
+        var(--black);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,148,74,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,148,74,0.035) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 10%, transparent 80%);
+    }
+    /* Right side image */
+    .hero-visual {
+      position: absolute; right: 0; top: 0; bottom: 0; width: 48%;
+      overflow: hidden;
+    }
+    .hero-visual::before {
+      content: ''; position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(to right, var(--black) 0%, rgba(8,8,8,0.7) 30%, rgba(8,8,8,0.1) 100%);
+    }
+    .hero-visual::after {
+      content: ''; position: absolute; inset: 0; z-index: 3;
+      background: linear-gradient(to top, rgba(8,8,8,0.5) 0%, transparent 50%);
+    }
+    .hero-visual img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center;
+      filter: brightness(0.55) saturate(0.5) contrast(1.1);
+    }
+    /* Content */
+    .hero-content {
+      position: relative; z-index: 10;
+      max-width: 1280px; width: 100%; padding: 0 3.5rem;
+      margin-top: 3rem;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: rgba(201,148,74,0.1); border: 1px solid var(--border);
+      padding: 0.35rem 1.2rem; border-radius: 100px;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.8rem;
+    }
+    .hero-badge span {
+      width: 5px; height: 5px; border-radius: 50%; background: var(--gold);
+      animation: blink 2s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 5.8vw, 6.2rem);
+      font-weight: 900; line-height: 1.0;
+      color: var(--white); margin-bottom: 1.6rem;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--gold);
+      display: block;
+    }
+    .hero-desc {
+      font-size: 1.05rem; color: var(--muted);
+      line-height: 1.75; max-width: 450px;
+      margin-bottom: 2.5rem; font-weight: 300;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-gold {
+      background: var(--gold); color: var(--black);
+      padding: 0.9rem 2.3rem; border-radius: 3px;
+      font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.06em; text-decoration: none;
+      transition: all 0.3s; border: 2px solid var(--gold);
+      display: inline-block;
+    }
+    .btn-gold:hover { background: transparent; color: var(--gold); }
+    .btn-ghost {
+      background: transparent; color: var(--cream);
+      padding: 0.9rem 2.3rem; border-radius: 3px;
+      font-weight: 500; font-size: 0.85rem;
+      letter-spacing: 0.06em; text-decoration: none;
+      transition: all 0.3s; border: 2px solid rgba(255,255,255,0.15);
+      display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+    /* Stats */
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .hero-stat-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 700; color: var(--white);
+    }
+    .hero-stat-lbl {
+      font-size: 0.72rem; color: var(--muted);
+      letter-spacing: 0.14em; text-transform: uppercase;
+      margin-top: 0.1rem;
+    }
+    /* Scroll cue */
+    .scroll-cue {
+      position: absolute; bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%); z-index: 10;
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      font-size: 0.65rem; color: var(--muted); letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollDown 2s ease-in-out infinite;
+    }
+    @keyframes scrollDown {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      50.01% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ─── MARQUEE STRIP ─────────────────────────── */
+    .marquee-strip {
+      background: var(--gold);
+      padding: 0.85rem 0; overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .marquee-inner {
+      display: flex; gap: 3.5rem; white-space: nowrap;
+      animation: marquee 22s linear infinite;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-item {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--black); flex-shrink: 0;
+    }
+    .marquee-dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: rgba(0,0,0,0.35); flex-shrink: 0;
+      align-self: center;
+    }
+
+    /* ─── SHARED STYLES ─────────────────────────── */
+    section { padding: 7rem 3.5rem; }
+    .container { max-width: 1240px; margin: 0 auto; }
+    .section-eyebrow {
+      display: flex; align-items: center; gap: 0.8rem;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.1rem;
+    }
+    .section-eyebrow::before {
+      content: ''; display: block; width: 28px; height: 1px;
+      background: var(--gold); flex-shrink: 0;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      font-weight: 700; color: var(--white); line-height: 1.18;
+    }
+    .gold-rule {
+      width: 48px; height: 2px; margin: 1.6rem 0;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    /* ─── ABOUT ─────────────────────────────────── */
+    .about { background: var(--dark); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 7rem; align-items: center;
+    }
+    .about-text p {
+      color: #9a9186; line-height: 1.85;
+      font-size: 1rem; margin-bottom: 1.2rem; font-weight: 300;
+    }
+    .about-tags {
+      display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem;
+    }
+    .tag {
+      padding: 0.4rem 1rem; border: 1px solid var(--border);
+      border-radius: 100px; font-size: 0.75rem;
+      color: var(--gold); letter-spacing: 0.08em;
+    }
+    /* Image with frame */
+    .about-img {
+      position: relative;
+    }
+    .about-img::before {
+      content: ''; position: absolute;
+      top: -12px; right: -12px;
+      width: 100%; height: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px; z-index: 0;
+    }
+    .about-img img {
+      position: relative; z-index: 1;
+      width: 100%; border-radius: 6px;
+      display: block;
+    }
+    .about-img-badge {
+      position: absolute; z-index: 2;
+      bottom: -1.5rem; left: -1.5rem;
+      background: var(--gold); color: var(--black);
+      padding: 1rem 1.4rem; border-radius: 6px;
+      text-align: center;
+    }
+    .about-img-badge strong {
+      display: block; font-size: 1.5rem;
+      font-family: 'Playfair Display', serif; font-weight: 900;
+    }
+    .about-img-badge span {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    /* ─── GALLERY ───────────────────────────────── */
+    .gallery { background: var(--black); }
+    .gallery-head {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; margin-bottom: 2.8rem;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .g-item {
+      overflow: hidden; border-radius: 5px;
+      position: relative; background: var(--card);
+      cursor: pointer;
+    }
+    .g-item::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 55%);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .g-item:hover::after { opacity: 1; }
+    .g-item img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .g-item:hover img { transform: scale(1.07); }
+
+    /* Layout */
+    .g-item:nth-child(1) { grid-column: span 2; aspect-ratio: 16/9; }
+    .g-item:nth-child(2) { grid-column: span 1; aspect-ratio: 4/3; }
+    .g-item:nth-child(3) { grid-column: span 1; aspect-ratio: 4/3; }
+    .g-item:nth-child(4) { grid-column: span 1; aspect-ratio: 4/3; }
+    .g-item:nth-child(5) { grid-column: span 1; aspect-ratio: 4/3; }
+    .g-item:nth-child(6) { grid-column: span 2; aspect-ratio: 16/9; }
+    .g-item:nth-child(7) { grid-column: span 1; aspect-ratio: 4/3; }
+    .g-item:nth-child(8) { grid-column: span 1; aspect-ratio: 4/3; }
+    .g-item:nth-child(9) { grid-column: span 1; aspect-ratio: 4/3; }
+    .g-item:nth-child(10){ grid-column: span 1; aspect-ratio: 4/3; }
+
+    /* ─── MENU SECTION ──────────────────────────── */
+    .menu-sec { background: var(--dark); }
+    .menu-intro {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: end; margin-bottom: 3.5rem;
+    }
+    .menu-note {
+      font-size: 0.9rem; color: var(--muted);
+      line-height: 1.7; font-weight: 300; align-self: end;
+    }
+    /* Two-column menu layout */
+    .menu-cols {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem; align-items: start;
+    }
+    .menu-category {
+      background: var(--card); border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 8px; overflow: hidden;
+    }
+    .menu-cat-header {
+      padding: 1.2rem 1.8rem;
+      background: rgba(201,148,74,0.07);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 0.7rem;
+    }
+    .menu-cat-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-weight: 700; color: var(--white);
+    }
+    .menu-cat-icon {
+      font-size: 1.1rem; line-height: 1;
+    }
+    .menu-items { padding: 0.4rem 0; }
+    .menu-row {
+      display: flex; align-items: baseline;
+      justify-content: space-between;
+      padding: 0.75rem 1.8rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      gap: 1rem;
+    }
+    .menu-row:last-child { border-bottom: none; }
+    .menu-row-name {
+      font-size: 0.9rem; color: var(--cream);
+      flex: 1; line-height: 1.4;
+    }
+    .menu-row-desc {
+      font-size: 0.75rem; color: var(--muted);
+      display: block; margin-top: 0.1rem;
+    }
+    .menu-row-dots {
+      flex: 1; border-bottom: 1px dotted rgba(255,255,255,0.1);
+      margin: 0 0.8rem; min-width: 20px; align-self: center;
+    }
+    .menu-row-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--gold); white-space: nowrap; flex-shrink: 0;
+    }
+    /* Stack smaller categories in the right column */
+    .menu-col-right {
+      display: flex; flex-direction: column; gap: 2rem;
+    }
+
+    /* ─── FEATURED IMAGE BREAK ──────────────────── */
+    .img-break {
+      height: 480px; position: relative; overflow: hidden;
+    }
+    .img-break img {
+      width: 100%; height: 100%;
+      object-fit: cover; filter: brightness(0.45) saturate(0.6);
+    }
+    .img-break-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(8,8,8,0.8) 0%, rgba(8,8,8,0.3) 60%, transparent 100%);
+      display: flex; align-items: center; justify-content: flex-start;
+      padding: 0 10%;
+    }
+    .img-break-text {
+      max-width: 520px;
+    }
+    .img-break-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      font-weight: 900; color: var(--white);
+      line-height: 1.1; margin-bottom: 1.5rem;
+    }
+    .img-break-text h2 em { color: var(--gold); font-style: italic; }
+
+    /* ─── INFO / CONTACT ────────────────────────── */
+    .info-sec { background: var(--black); }
+    .info-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: start;
+    }
+    .hours-table {
+      margin-top: 2rem; width: 100%;
+      border-collapse: collapse;
+    }
+    .hours-table tr {
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td {
+      padding: 0.85rem 0;
+      font-size: 0.92rem;
+    }
+    .hours-table td:first-child { color: var(--cream); }
+    .hours-table td:last-child {
+      text-align: right; color: var(--gold); font-weight: 500;
+    }
+    .contact-block {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 2.2rem;
+      display: flex; flex-direction: column; gap: 1.8rem;
+      margin-top: 2rem;
+    }
+    .c-item { display: flex; gap: 1.2rem; align-items: flex-start; }
+    .c-icon {
+      width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(201,148,74,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .c-lbl {
+      font-size: 0.65rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 0.3rem; font-weight: 600;
+    }
+    .c-val {
+      font-size: 0.97rem; color: var(--cream); font-weight: 500;
+    }
+    .c-val a { color: var(--cream); text-decoration: none; transition: color 0.3s; }
+    .c-val a:hover { color: var(--gold); }
+
+    /* ─── FOOTER ────────────────────────────────── */
+    footer {
+      background: #040404;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      padding: 2.2rem 3.5rem;
+    }
+    .footer-inner {
+      max-width: 1240px; margin: 0 auto;
+      display: flex; align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo img {
+      height: 42px; opacity: 0.55; filter: grayscale(1);
+    }
+    .footer-copy { font-size: 0.77rem; color: var(--muted); }
+    .footer-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.77rem; color: var(--muted);
+      text-decoration: none; transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ─── FADE-UP ANIMATION ─────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* ─── RESPONSIVE ────────────────────────────── */
+    @media (max-width: 900px) {
+      section { padding: 5rem 1.8rem; }
+      nav { padding: 1rem 1.8rem; }
+      .nav-links { display: none; }
+      .hero-visual { display: none; }
+      .hero-content { padding: 0 1.8rem; }
+      .hero-stats { gap: 1.8rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-img-badge { display: none; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .g-item:nth-child(n) { grid-column: span 1; aspect-ratio: 4/3; }
+      .menu-intro { grid-template-columns: 1fr; }
+      .menu-cols { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+      .footer-links { justify-content: center; }
+      footer { padding: 2rem 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ═════════════════════════════════════════ -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">
+      <img src="images/logo/SandzakGrillLogo.png" alt="Sandzak Grill">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#ueber-uns">Über uns</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#speisekarte">Speisekarte</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="tel:+4923147886748" class="nav-cta">Jetzt anrufen</a>
+  </nav>
+
+  <!-- ═══ HERO ════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-visual">
+      <img src="images/food/68bee83b03d9403079da8b71.png" alt="">
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span></span>
+        Halal · Balkan Grill · Dortmund
+      </div>
+      <h1>
+        Echter<br>Geschmack
+        <em>vom Balkan.</em>
+      </h1>
+      <p class="hero-desc">
+        Handgemachte Ćevapčići, saftige Pljeskavica und klassische Grillteller –
+        täglich frisch, authentisch und mit Herzblut zubereitet.
+      </p>
+      <div class="hero-btns">
+        <a href="#speisekarte" class="btn-gold">Speisekarte ansehen</a>
+        <a href="#kontakt" class="btn-ghost">Öffnungszeiten &amp; Anfahrt</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-val">Täglich</div>
+          <div class="hero-stat-lbl">geöffnet</div>
+        </div>
+        <div>
+          <div class="hero-stat-val">09–21 Uhr</div>
+          <div class="hero-stat-lbl">Öffnungszeiten</div>
+        </div>
+        <div>
+          <div class="hero-stat-val">100% Halal</div>
+          <div class="hero-stat-lbl">zertifiziert</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-cue">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ═══ MARQUEE ══════════════════════════════════════════ -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-inner">
+      <!-- repeated twice for seamless loop -->
+      <span class="marquee-item">Ćevapčići</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Pljeskavica</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Grill Teller</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Halal</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Frisch täglich</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Kajmak</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Ajvar</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Pasulj</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Dortmund</span><span class="marquee-dot"></span>
+      <!-- duplicate -->
+      <span class="marquee-item">Ćevapčići</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Pljeskavica</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Grill Teller</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Halal</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Frisch täglich</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Kajmak</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Ajvar</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Pasulj</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Dortmund</span><span class="marquee-dot"></span>
+    </div>
+  </div>
+
+  <!-- ═══ ABOUT ════════════════════════════════════════════ -->
+  <section class="about" id="ueber-uns">
+    <div class="container">
+      <div class="about-grid">
+        <div class="reveal">
+          <div class="section-eyebrow">Über uns</div>
+          <h2 class="section-title">Balkan-Küche<br>mit Seele</h2>
+          <div class="gold-rule"></div>
+          <p>
+            Der Sandzak Grill ist mehr als ein Restaurant – es ist ein Stück Heimat.
+            Wir servieren authentische Balkan-Spezialitäten, so wie sie seit Generationen
+            auf dem Balkan zubereitet werden: mit handgemachten Zutaten, traditionellen
+            Gewürzen und echter Leidenschaft.
+          </p>
+          <p>
+            Ob Ćevapčići direkt vom Grill, eine wärmende Bohnensuppe oder ein großer
+            Grill-Teller für die ganze Familie – wir sind täglich für euch da.
+            Alle Speisen sind Halal-zertifiziert und können auch zum Mitnehmen bestellt werden.
+          </p>
+          <div class="about-tags">
+            <span class="tag">Handgemachte Ćevapčići</span>
+            <span class="tag">100% Halal</span>
+            <span class="tag">Täglich frisch</span>
+            <span class="tag">Zum Mitnehmen</span>
+            <span class="tag">Traditionelle Rezepte</span>
+            <span class="tag">Familienrestaurant</span>
+          </div>
+        </div>
+        <div class="about-img reveal reveal-d1">
+          <img src="images/food/68bee83b03d9403079da8b6d.png" alt="Ćevapčići Teller">
+          <div class="about-img-badge">
+            <strong>100%</strong>
+            <span>Halal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ GALLERY ══════════════════════════════════════════ -->
+  <section class="gallery" id="galerie">
+    <div class="container">
+      <div class="gallery-head reveal">
+        <div>
+          <div class="section-eyebrow">Unsere Gerichte</div>
+          <h2 class="section-title">Einblick in<br>unsere Küche</h2>
+        </div>
+        <p style="max-width:280px; font-size:0.88rem; color:var(--muted); line-height:1.7; text-align:right;">
+          Frisch zubereitet, täglich auf den Tisch — vom Grill direkt zu euch.
+        </p>
+      </div>
+      <div class="gallery-grid">
+        <div class="g-item reveal">
+          <img src="images/food/68bee83b03d9403079da8b70.png" alt="Gemischter Grill-Teller">
+        </div>
+        <div class="g-item reveal reveal-d1">
+          <img src="images/food/68bee83b03d9403079da8b6d.png" alt="Ćevapčići">
+        </div>
+        <div class="g-item reveal reveal-d2">
+          <img src="images/food/68bee83b03d9403079da8b6e.png" alt="Hähnchen vom Grill">
+        </div>
+        <div class="g-item reveal">
+          <img src="images/food/68bee83b03d9403079da8b6a.png" alt="Pljeskavica">
+        </div>
+        <div class="g-item reveal reveal-d1">
+          <img src="images/food/68bee83b03d9403079da8b6f.png" alt="Grill-Mix Teller">
+        </div>
+        <div class="g-item reveal reveal-d2">
+          <img src="images/food/68bee83b03d9403079da8b71.png" alt="Großer Grill-Teller">
+        </div>
+        <div class="g-item reveal">
+          <img src="images/food/68bee81703d9403079da8b68.png" alt="Tomatensalat">
+        </div>
+        <div class="g-item reveal reveal-d1">
+          <img src="images/food/68bee81703d9403079da8b69.png" alt="Gurkensalat">
+        </div>
+        <div class="g-item reveal reveal-d2">
+          <img src="images/food/68bee81703d9403079da8b67.png" alt="Krautsalat">
+        </div>
+        <div class="g-item reveal reveal-d3">
+          <img src="images/food/68bee7f7d430c6ab8a397d79.png" alt="Bohnensuppe Pasulj">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MENU ══════════════════════════════════════════════ -->
+  <section class="menu-sec" id="speisekarte">
+    <div class="container">
+      <div class="menu-intro reveal">
+        <div>
+          <div class="section-eyebrow">Speisekarte</div>
+          <h2 class="section-title">Unsere<br>Spezialitäten</h2>
+          <div class="gold-rule"></div>
+        </div>
+        <p class="menu-note">
+          Alle Grillgerichte werden serviert mit Kajmak, frischen Zwiebeln,
+          Salat und Paprika. Frische Ćevapčići auch direkt zum Mitnehmen erhältlich.
+        </p>
+      </div>
+
+      <div class="menu-cols">
+        <!-- LEFT COLUMN: Grillgerichte -->
+        <div class="menu-category reveal">
+          <div class="menu-cat-header">
+            <span class="menu-cat-icon">🔥</span>
+            <h3>Grillgerichte</h3>
+          </div>
+          <div class="menu-items">
+            <div class="menu-row">
+              <div class="menu-row-name">
+                Ćevapčići (5 Stk.)
+                <span class="menu-row-desc">Mit Kajmak, Zwiebeln, Salat &amp; Paprika</span>
+              </div>
+              <div class="menu-row-dots"></div>
+              <div class="menu-row-price">7,00 €</div>
+            </div>
+            <div class="menu-row">
+              <div class="menu-row-name">
+                Ćevapčići (10 Stk.)
+                <span class="menu-row-desc">Mit Kajmak, Zwiebeln, Salat &amp; Paprika</span>
+              </div>
+              <div class="menu-row-dots"></div>
+              <div class="menu-row-price">11,50 €</div>
+            </div>
+            <div class="menu-row">
+              <div class="menu-row-name">
+                Pljeskavica (2 Stk.)
+                <span class="menu-row-desc">Balkanische Hackfleischfladen vom Grill</span>
+              </div>
+              <div class="menu-row-dots"></div>
+              <div class="menu-row-price">11,50 €</div>
+            </div>
+            <div class="menu-row">
+              <div class="menu-row-name">
+                Ćevapčići (5 Stk.) + Pljeskavica (1 Stk.)
+              </div>
+              <div class="menu-row-dots"></div>
+              <div class="menu-row-price">11,50 €</div>
+            </div>
+            <div class="menu-row">
+              <div class="menu-row-name">
+                Ćevapčići (5 Stk.) + Hähnchenkeulen
+              </div>
+              <div class="menu-row-dots"></div>
+              <div class="menu-row-price">12,50 €</div>
+            </div>
+            <div class="menu-row">
+              <div class="menu-row-name">
+                Hähnchenkeulen (2 Stk.)
+                <span class="menu-row-desc">Saftig vom Grill, mit frischen Beilagen</span>
+              </div>
+              <div class="menu-row-dots"></div>
+              <div class="menu-row-price">11,50 €</div>
+            </div>
+            <div class="menu-row">
+              <div class="menu-row-name">
+                Kalb Schnitzel
+                <span class="menu-row-desc">Zart gegrillt, mit Salat &amp; Beilagen</span>
+              </div>
+              <div class="menu-row-dots"></div>
+              <div class="menu-row-price">17,00 €</div>
+            </div>
+            <div class="menu-row">
+              <div class="menu-row-name">
+                Lamm Koteletts
+                <span class="menu-row-desc">Aromatisch gewürzt, frisch vom Grill</span>
+              </div>
+              <div class="menu-row-dots"></div>
+              <div class="menu-row-price">17,00 €</div>
+            </div>
+            <div class="menu-row">
+              <div class="menu-row-name">
+                Grill Teller
+                <span class="menu-row-desc">Ćevapčići, Pljeskavica, Hähnchen &amp; Beilagen</span>
+              </div>
+              <div class="menu-row-dots"></div>
+              <div class="menu-row-price">19,50 €</div>
+            </div>
+            <div class="menu-row">
+              <div class="menu-row-name">
+                Bohnensuppe (Pasulj)
+                <span class="menu-row-desc">Traditionell &amp; hausgemacht</span>
+              </div>
+              <div class="menu-row-dots"></div>
+              <div class="menu-row-price">10,00 €</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Salate + Imbiss + Getränke + Extras -->
+        <div class="menu-col-right">
+
+          <!-- Salate -->
+          <div class="menu-category reveal reveal-d1">
+            <div class="menu-cat-header">
+              <span class="menu-cat-icon">🥗</span>
+              <h3>Salate</h3>
+            </div>
+            <div class="menu-items">
+              <div class="menu-row">
+                <div class="menu-row-name">Tomatensalat</div>
+                <div class="menu-row-dots"></div>
+                <div class="menu-row-price">3,50 €</div>
+              </div>
+              <div class="menu-row">
+                <div class="menu-row-name">Gurkensalat</div>
+                <div class="menu-row-dots"></div>
+                <div class="menu-row-price">3,50 €</div>
+              </div>
+              <div class="menu-row">
+                <div class="menu-row-name">Krautsalat</div>
+                <div class="menu-row-dots"></div>
+                <div class="menu-row-price">3,50 €</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Imbiss -->
+          <div class="menu-category reveal reveal-d1">
+            <div class="menu-cat-header">
+              <span class="menu-cat-icon">🍟</span>
+              <h3>Imbiss</h3>
+            </div>
+            <div class="menu-items">
+              <div class="menu-row">
+                <div class="menu-row-name">Pommes</div>
+                <div class="menu-row-dots"></div>
+                <div class="menu-row-price">3,00 €</div>
+              </div>
+              <div class="menu-row">
+                <div class="menu-row-name">Ketchup / Mayo</div>
+                <div class="menu-row-dots"></div>
+                <div class="menu-row-price">0,50 €</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Getränke -->
+          <div class="menu-category reveal reveal-d2">
+            <div class="menu-cat-header">
+              <span class="menu-cat-icon">🥤</span>
+              <h3>Getränke</h3>
+            </div>
+            <div class="menu-items">
+              <div class="menu-row">
+                <div class="menu-row-name">Cola / Fanta / Sprite</div>
+                <div class="menu-row-dots"></div>
+                <div class="menu-row-price">2,00 €</div>
+              </div>
+              <div class="menu-row">
+                <div class="menu-row-name">Stilles / Mineralwasser</div>
+                <div class="menu-row-dots"></div>
+                <div class="menu-row-price">2,00 €</div>
+              </div>
+              <div class="menu-row">
+                <div class="menu-row-name">Ayran / Joghurt</div>
+                <div class="menu-row-dots"></div>
+                <div class="menu-row-price">2,00 €</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Extras -->
+          <div class="menu-category reveal reveal-d2">
+            <div class="menu-cat-header">
+              <span class="menu-cat-icon">✦</span>
+              <h3>Extras &amp; Zum Mitnehmen</h3>
+            </div>
+            <div class="menu-items">
+              <div class="menu-row">
+                <div class="menu-row-name">Kajmak (100g)</div>
+                <div class="menu-row-dots"></div>
+                <div class="menu-row-price">2,50 €</div>
+              </div>
+              <div class="menu-row">
+                <div class="menu-row-name">Ajvar</div>
+                <div class="menu-row-dots"></div>
+                <div class="menu-row-price">2,00 €</div>
+              </div>
+              <div class="menu-row">
+                <div class="menu-row-name">Paprika (Tursi)</div>
+                <div class="menu-row-dots"></div>
+                <div class="menu-row-price">0,50 €</div>
+              </div>
+              <div class="menu-row">
+                <div class="menu-row-name">
+                  1 kg Frische Ćevapčići
+                  <span class="menu-row-desc">Zum Selbstgrillen, ungegart</span>
+                </div>
+                <div class="menu-row-dots"></div>
+                <div class="menu-row-price">18,00 €</div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /menu-col-right -->
+      </div><!-- /menu-cols -->
+    </div>
+  </section>
+
+  <!-- ═══ IMAGE BREAK ═══════════════════════════════════════ -->
+  <div class="img-break">
+    <img src="images/food/68bee83b03d9403079da8b70.png" alt="Sandzak Grill Spezialitäten">
+    <div class="img-break-overlay">
+      <div class="img-break-text reveal">
+        <h2>
+          Frisch. Halal.<br>
+          <em>Unverwechselbar.</em>
+        </h2>
+        <a href="tel:+4923147886748" class="btn-gold">
+          +49 231 47886748
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ INFO / CONTACT ════════════════════════════════════ -->
+  <section class="info-sec" id="kontakt">
+    <div class="container">
+      <div class="info-grid">
+        <!-- Hours -->
+        <div class="reveal">
+          <div class="section-eyebrow">Öffnungszeiten</div>
+          <h2 class="section-title">Täglich für<br>euch geöffnet</h2>
+          <div class="gold-rule"></div>
+          <table class="hours-table">
+            <tr>
+              <td>Montag – Sonntag</td>
+              <td>09:00 – 21:00 Uhr</td>
+            </tr>
+            <tr>
+              <td>Feiertage</td>
+              <td>09:00 – 21:00 Uhr</td>
+            </tr>
+          </table>
+          <p style="margin-top:1.5rem; font-size:0.83rem; color:var(--muted); line-height:1.7;">
+            Frische Ćevapčići auch zum Mitnehmen erhältlich –
+            einfach anrufen und vorbestellen.
+          </p>
+        </div>
+        <!-- Contact -->
+        <div class="reveal reveal-d1">
+          <div class="section-eyebrow">Kontakt &amp; Anfahrt</div>
+          <h2 class="section-title">So findet<br>ihr uns</h2>
+          <div class="gold-rule"></div>
+          <div class="contact-block">
+            <div class="c-item">
+              <div class="c-icon">📍</div>
+              <div>
+                <div class="c-lbl">Adresse</div>
+                <div class="c-val">
+                  Brunnenstraße 36<br>
+                  44145 Dortmund
+                </div>
+              </div>
+            </div>
+            <div class="c-item">
+              <div class="c-icon">📞</div>
+              <div>
+                <div class="c-lbl">Telefon</div>
+                <div class="c-val">
+                  <a href="tel:+4923147886748">+49 231 47886748</a>
+                </div>
+              </div>
+            </div>
+            <div class="c-item">
+              <div class="c-icon">🕐</div>
+              <div>
+                <div class="c-lbl">Öffnungszeiten</div>
+                <div class="c-val">Täglich 09:00 – 21:00 Uhr</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ════════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="images/logo/SandzakGrillLogo.png" alt="Sandzak Grill">
+      </div>
+      <p class="footer-copy">
+        &copy; 2025 Sandzak Grill · Brunnenstraße 36, 44145 Dortmund
+      </p>
+      <ul class="footer-links">
+        <li><a href="#ueber-uns">Über uns</a></li>
+        <li><a href="#speisekarte">Speisekarte</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect (shadow only, background stays white)
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
