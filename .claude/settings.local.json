@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:www.sandzakgrill.de)"
+      "WebFetch(domain:www.sandzakgrill.de)",
+      "WebSearch"
     ]
   }
 }
