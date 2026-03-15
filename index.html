@@ -14,8 +14,8 @@
       --dark:    #f0ece4;
       --card:    #ffffff;
       --card2:   #f7f3ee;
-      --gold:    #57b82e;
-      --gold-lt: #57b82e;
+      --gold:    #c8732a;
+      --gold-lt: #e0954a;
       --cream:   #2a1f0e;
       --white:   #0f0b06;
       --muted:   #8a7f70;
@@ -383,7 +383,7 @@
     .menu-row:last-child { border-bottom: none; }
     .menu-row-name {
       font-size: 0.9rem; color: var(--cream);
-      flex: 1; line-height: 1.4;
+      flex: 1; line-height: 1.4; font-weight: 500;
     }
     .menu-row-desc {
       font-size: 0.75rem; color: var(--muted);
@@ -398,6 +398,22 @@
       font-size: 1rem; font-weight: 700;
       color: var(--gold); white-space: nowrap; flex-shrink: 0;
     }
+    /* Highlighted menu row (e.g. 1kg Ćevapčići) */
+    .menu-row-highlight {
+      background: rgba(200,115,42,0.06);
+      border-top: 1px solid rgba(200,115,42,0.18) !important;
+      border-bottom: 1px solid rgba(200,115,42,0.18) !important;
+      border-left: 3px solid var(--gold);
+      margin-top: 0.5rem;
+      padding-left: calc(1.8rem - 3px);
+    }
+    .menu-row-highlight .menu-row-name {
+      color: var(--gold);
+    }
+    .menu-row-highlight .menu-row-dots {
+      border-bottom-color: rgba(200,115,42,0.25);
+    }
+
     /* Stack smaller categories in the right column */
     .menu-col-right {
       display: flex; flex-direction: column; gap: 2rem;
@@ -956,9 +972,10 @@
                 <div class="menu-row-dots"></div>
                 <div class="menu-row-price">0,50 €</div>
               </div>
-              <div class="menu-row">
+              <div class="menu-row menu-row-highlight">
                 <div class="menu-row-name">
-                  1 kg Frische Ćevapčići
+                  ca. 1 kg Frische Ćevapčići
+                  <span class="menu-row-desc">Roh &amp; ungegart – zum Selbstgrillen</span>
                 </div>
                 <div class="menu-row-dots"></div>
                 <div class="menu-row-price">18,00 €</div>
